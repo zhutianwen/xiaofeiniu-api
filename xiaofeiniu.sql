@@ -111,5 +111,5 @@ CREATE TABLE xfn_order_detail(
     FOREIGN KEY(orderId) REFERENCES xfn_order(oid)
 );
 INSERT INTO xfn_order_detail VALUES
-(NULL,100001,1,'丁丁',1);
+(NULL,100001,1,'丁丁',1); 
 
