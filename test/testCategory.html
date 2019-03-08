@@ -16,7 +16,7 @@
        bt1.onclick=function(){
         axios.get("http://127.0.0.1:8090/admin/category").then((result)=>{
            console.log("获取菜品");
-          // console.log(result.data)
+          console.log(result.data)
         }).catch((err)=>{
             console.log(err)
 
@@ -24,7 +24,7 @@
        }
 
        bt2.onclick=function(){
-           axios.delete("http://127.0.0.1:8090/admin/category/6").then((result)=>{
+           axios.delete("http://127.0.0.1:8090/admin/category/20").then((result)=>{
              console.log("删除类别执行成功")
              console.log(result.data)
            }).catch((err)=>{
@@ -42,7 +42,15 @@
            })
        }
 
-       
+         bt4.onclick=function(){
+           var data={cid:6,cname:"新品类"};
+           axios.put("http://127.0.0.1:8090/admin/category",data).then((result)=>{
+              console.log("类别修改成功");
+              console.log(result.data);
+           }).catch((err)=>{
+              console.log(err)
+           })
+       }
     </script>
 </body>
 </html>
