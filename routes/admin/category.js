@@ -47,11 +47,6 @@ router.delete("/:cid", (req, res) => {
 })
 
 
-
-
-
-
-
 /*
 API: post/admin/category
 请求参数:{cname:"xxx"}
@@ -79,9 +74,18 @@ API: put/admin/category
 */
 router.put("/",(req,res)=>{
     var data=req.body;
+    console.log(data)
     var sql="UPDATE xfn_category  SET ? WHERE cid=?";
     pool.query(sql,[data,data.cid],(err,result)=>{
         if(err) throw err;
+        if(result.changedRows>0){
+            res.send({cid:200,msg:"1 category modified"})  
+        }else if(result.affectedRows==0){
+            res.send({cid:400,msg:"0 category modified,not exists"})
+        }else if(result.affectedRows==1 && result.changedRows==0){
+            //影响到1行 但修改0行--新值
+            res.send({cid:401,msg:"0 category modified,no modification"})
+        }
         
     })
 })
